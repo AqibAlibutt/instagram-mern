@@ -1,9 +1,25 @@
 const express = require('express');
 const { newPost, likeUnlikePost, deletePost, newComment, allPosts, getPostsOfFollowing, updateCaption, saveUnsavePost, getPostDetails } = require('../controllers/postController');
 const { isAuthenticated } = require('../middlewares/auth');
-const { uploadPost } = require('../utils/awsFunctions');
+// const { uploadPost } = require('../utils/awsFunctions');
+const path = require('path');
+const multer = require('multer');
 
 const router = express();
+
+const postStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.resolve(__dirname, '../../public/uploads/posts'))
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '_' + Date.now() + path.extname(file.originalname))
+    }
+})
+
+const  uploadPost = multer({
+    storage: postStorage,
+    limit: { fileSize: 1000000 * 10 }
+});
 
 router.route("/post/new").post(isAuthenticated, uploadPost.single('post'), newPost);
 

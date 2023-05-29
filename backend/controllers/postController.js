@@ -9,7 +9,8 @@ exports.newPost = catchAsync(async (req, res, next) => {
 
     const postData = {
         caption: req.body.caption,
-        image: req.file.location,
+        // image: req.file.location,
+        image: req.file.filename,
         postedBy: req.user._id
     }
 

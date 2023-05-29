@@ -7,6 +7,7 @@ import { NEW_CHAT_RESET } from '../../constants/chatConstants';
 import { toast } from 'react-toastify';
 import { addNewChat, clearErrors } from '../../actions/chatAction';
 import { Skeleton } from '@mui/material';
+import { BASE_PROFILE_IMAGE_URL } from '../../utils/constants';
 
 const NewDialog = ({ open, onClose }) => {
 
@@ -90,7 +91,7 @@ const NewDialog = ({ open, onClose }) => {
                             users.map((u) => (
                                 <div onClick={() => addToChat(u._id)} className="flex items-center hover:bg-gray-50 py-2 px-4 cursor-pointer" key={u._id}>
                                     <div className="flex space-x-3 items-center">
-                                        <img draggable="false" className="w-11 h-11 rounded-full object-cover" src={u.avatar} alt="avatar" />
+                                        <img draggable="false" className="w-11 h-11 rounded-full object-cover" src={BASE_PROFILE_IMAGE_URL+u.avatar} alt="avatar" />
                                         <div className="flex flex-col items-start">
                                             <span className="text-black text-sm font-semibold">{u.username}</span>
                                             <span className="text-gray-400 text-sm">{u.name}</span>

@@ -27,7 +27,8 @@ exports.signupUser = catchAsync(async (req, res, next) => {
         email,
         username,
         password,
-        avatar: req.file.location
+        // avatar: req.file.location
+        avatar: req.file.filename
     })
 
     sendCookie(newUser, 201, res);
@@ -187,7 +188,8 @@ exports.updateProfile = catchAsync(async (req, res, next) => {
         const user = await User.findById(req.user._id);
 
         await deleteFile(user.avatar);
-        newUserData.avatar = req.file.location
+        // newUserData.avatar = req.file.location
+        newUserData.avatar = req.file.filename
     }
 
     await User.findByIdAndUpdate(req.user._id, newUserData, {

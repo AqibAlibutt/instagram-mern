@@ -12,6 +12,7 @@ import UsersDialog from '../Layouts/UsersDialog';
 import { NEW_CHAT_RESET } from '../../constants/chatConstants';
 import MetaData from '../Layouts/MetaData';
 import NotFound from '../Errors/NotFound';
+import { BASE_PROFILE_IMAGE_URL } from '../../utils/constants';
 
 const Profile = () => {
 
@@ -106,7 +107,7 @@ const Profile = () => {
 
                         {/* profile picture */}
                         <div className="sm:w-1/3 flex justify-center mx-auto sm:mx-0">
-                            <img draggable="false" className="w-40 h-40 rounded-full object-cover" src={user.avatar} alt="" />
+                            <img draggable="false" className="w-40 h-40 rounded-full object-cover" src={BASE_PROFILE_IMAGE_URL+user.avatar} alt="" />
                         </div>
 
                         {/* profile details */}
